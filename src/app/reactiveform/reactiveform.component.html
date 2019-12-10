@@ -1,0 +1,258 @@
+
+
+<div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+          <div class="jumbotron">
+              <h4>Reactive Form with Validation</h4>
+
+<form [formGroup] = "myform" (ngSubmit)="onSubmit(myform)" autocomplete="on">
+
+
+  <div class="form-group">
+      <div class="col-md-6 offset-md-3">
+      <label for ="firstname">First Name:</label> 
+  <input type="text" class="form-control" formControlName = "firstname" placeholder="firstname"  >
+  <span style="color:red" *ngIf = "myform.get('firstname').touched && myform.get('firstname').invalid">
+    <span *ngIf = "myform.get('firstname').errors.required">
+      First Name is required
+    </span>
+    <span *ngIf = "myform.get('firstname').errors.minlength">
+        Min length  5 is required
+      </span>
+      <span *ngIf = "myform.get('firstname').errors.maxlength">
+          Max length 2 is required
+        </span>
+        <span *ngIf = "myform.get('firstname').errors.pattern">
+          Alphabets only
+        </span>
+
+
+  </span>
+      </div>
+  </div>
+<br>
+
+
+<div class="form-group">
+  <div class="col-md-6 offset-md-3">
+  <label for ="Lastname"> Last Name:</label>
+<input type="text" class="form-control" formControlName = "lastname" placeholder="lastname" >
+<span style="color:red" *ngIf = "myform.get('lastname').touched && myform.get('lastname').invalid">
+    <span *ngIf = "myform.get('lastname').errors.required">
+      First Name is required
+    </span>
+    <span *ngIf = "myform.get('lastname').errors.minlength">
+        Min length  5 is required
+      </span>
+      <span *ngIf = "myform.get('lastname').errors.maxlength">
+          Max length 2 is required
+        </span>
+        <span *ngIf = "myform.get('lastname').errors.pattern">
+          Alphabets only
+        </span>
+
+
+  </span>
+  </div>
+</div>
+<br>
+
+<div class="form-group">
+  <div class="col-md-6 offset-md-3">
+  <label for ="Email"> Email:</label>
+<input type="text" class="form-control" formControlName = "email" placeholder="email" >
+<span style="color:red" *ngIf = "myform.get('email').touched && myform.get('email').invalid">
+    <span *ngIf = "myform.get('email').errors.required">
+      Email is required
+    </span>
+    <span *ngIf = "myform.get('email').errors.minlength">
+        Min length  5 is required
+      </span>
+      <span *ngIf = "myform.get('email').errors.maxlength">
+          Max length 25 is required
+        </span>
+        <span *ngIf = "myform.get('email').errors.pattern">
+          Please provide @
+        </span>
+
+
+  </span>
+  </div>
+</div>
+<br>
+
+<div class="form-group">
+  <div class="col-md-6 offset-md-3">
+  <label for ="Amount"> Amount:</label>
+<input type="text" class="form-control" formControlName = "amount" placeholder="Amount">
+<span style="color:red" *ngIf = "myform.get('amount').touched && myform.get('amount').invalid">
+    <span *ngIf = "myform.get('amount').errors.required">
+      First Name is required
+    </span>
+    <span *ngIf = "myform.get('amount').errors.minlength">
+        Min length  5 is required
+      </span>
+      <span *ngIf = "myform.get('amount').errors.maxlength">
+          Max length 2 is required
+        </span>
+        <span *ngIf = "myform.get('amount').errors.pattern">
+          Alphabets only
+        </span>
+
+
+  </span>
+  </div>
+</div>
+<br>
+
+<div class="form-group">
+  <div class="col-md-6 offset-md-3">
+  <label for ="Gender"> Gender:</label>
+<input type="radio" class="form-control" formControlName = "gender" value="male" >Male
+<input type="radio" class="form-control" formControlName = "gender" value="female" >Female
+<span style="color:red" *ngIf = "myform.get('gender').touched && myform.get('gender').invalid">
+<span *ngIf = "myform.get('gender').errors.required">
+  Gender is required
+</span>
+  
+</span>
+  </div>
+</div>
+<br>
+
+<div class="form-group">
+  <div class="col-md-6 offset-md-3">
+  <label for ="firstname"> Date Of Birth:</label>
+<input type="date" class="form-control" formControlName = "dob" placeholder="dob" >
+<span style="color:red" *ngIf = "myform.get('dob').touched && myform.get('dob').invalid">
+    <span *ngIf = "myform.get('dob').errors.required">
+      dob is required
+    </span>
+   
+     
+      
+
+
+  </span>
+  </div>
+</div>
+<br>
+
+<div class="form-group">
+    <div class="col-md-6 offset-md-3">
+        <label for ="country"> Country:</label>
+  <!-- <select class="form-control" formControlName = "country">
+      <span style="color:red" *ngIf = "myform.get('country').errors.touched && myform.get('country').errors.invalid">
+          <span style="color:red" *ngIf = "myform.get('country').errors.required">
+              Country is required
+            </span>
+      </span>
+    <option>Please Select</option>
+    <option>India</option>
+    <option>USA</option>
+  </select> -->
+  <select formControlName="country" class="form-control"  >
+      
+    <option  default selected disabled>select any one</option> 
+      <option *ngFor="let c of countries" [ngValue]="c">
+         {{ c.name }}
+      </option>
+   </select>
+   <span style="color:red" *ngIf = "myform.get('country').touched && myform.get('country').invalid">
+      <span style="color:red" *ngIf = "myform.get('country').errors.required">
+          Country is required
+        </span>
+  </span>
+  
+</div>
+</div>
+<br>
+
+<!-- <input type="submit" value="Submit" (click)="onSubmit(myform)" [disabled]="myform.invalid"> -->
+<button class="btn  btn-primary" data-toggle="modal" data-target="#largeModal" 
+(click)="saveData(myform)">Submit</button>&nbsp;
+<button class="btn  btn-warning"  (click)="myform.reset()">Reset</button><br>
+<!-- <input type="button" value="Reset" (click)="myform.reset()"> -->
+  
+  
+
+
+  
+</form>
+</div>
+</div>
+</div>
+<!-- <table class="table table-bordered">
+  <tr>
+    <th>FirstName</th>
+    <th>LastName</th>
+    <th>Email</th>
+    <th>Amount</th>
+    <th>Gender</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  <tr *ngFor="let item of msg">
+    <td>{{item.firstname}}</td>
+  </tr>
+</table> -->
+</div>
+
+
+  
+  
+<!-- <div class="row mb-4">
+  <div class="col text-center">
+    <h3>The Large Modal</h3>
+    <a href="#" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#largeModal">Click to open Modal</a>
+  </div>
+</div> -->
+
+
+
+<!-- large modal -->
+<div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Large Modal</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered">
+          <tr>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Email</th>
+            <th>Amount</th>
+            <th>Gender</th>
+            <th>DOB</th>
+            <th>Country</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+          <tr *ngFor="let item of users">
+            <td>{{item.firstname}}</td>
+                <td>{{item.lastname}}</td>
+                  <td>{{item.email}}</td>
+                  <td>{{item.amount}}</td>
+                    <td>{{item.gender}}</td>
+                    <td>{{item.dob}}</td>
+                    <td>{{item.country.name}}</td>
+                    <td><button (click)="update()">Edit</button></td>
+                    <td><button>Delete</button></td>
+                    
+                  
+                  </tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

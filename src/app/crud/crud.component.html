@@ -1,0 +1,13 @@
+<table class="table table-bordered">
+<tr>
+  <th>Id</th>
+  <th>Title</th>
+  <th>Body</th>
+</tr>
+<tr *ngFor="let p of Posts">
+  <td><a [routerLink]="['/post', p.id]">{{p.id}}</a></td>
+  <td>{{p.title}}</td>
+  <td>{{p.body}}</td>
+
+</tr>
+</table>
